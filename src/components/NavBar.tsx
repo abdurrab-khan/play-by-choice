@@ -110,7 +110,7 @@ function NavBar() {
         </DropdownMenu>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent className="sm:max-w-[425px] bg-gradient-to-br from-gray-900 to-[#1e201e] text-white border border-gray-700 shadow-lg">
+          <DialogContent className="sm:max-w-[425px] bg-linear-to-br from-gray-900 to-[#1e201e] text-white border border-gray-700 shadow-lg">
             <DialogHeader>
               <DialogTitle className="text-2xl font-bold flex items-center gap-2">
                 <Trash2 className="w-6 h-6" />

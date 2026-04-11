@@ -67,7 +67,7 @@ function SpaceCard({
   const imageHostName = new URL(stream.bigImg)?.hostname;
 
   return (
-    <div className="relative w-full h-fit p-4 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 group">
+    <div className="relative w-full h-fit p-4 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl bg-linear-to-br from-gray-800 to-gray-900 border border-gray-700 group">
       <div className="flex flex-col xl:flex-row gap-4 lg:gap-6">
         <div
           className={`relative ${
@@ -82,7 +82,7 @@ function SpaceCard({
             className="transition-transform duration-300 group-hover:scale-105"
           />
         </div>
-        <div className="flex flex-col justify-between flex-grow">
+        <div className="flex flex-col justify-between grow">
           <div>
             <h2 className="text-xl text-balance overflow-hidden font-bold text-white mb-2 flex items-center gap-2">
               {stream.title.length >= 50

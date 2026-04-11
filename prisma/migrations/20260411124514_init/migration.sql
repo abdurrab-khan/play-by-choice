@@ -50,8 +50,8 @@ CREATE TABLE "CurrentStream" (
 -- CreateTable
 CREATE TABLE "Upvote" (
     "id" TEXT NOT NULL,
-    "userId" TEXT,
-    "streamId" TEXT,
+    "userId" TEXT NOT NULL,
+    "streamId" TEXT NOT NULL,
 
     CONSTRAINT "Upvote_pkey" PRIMARY KEY ("id")
 );
@@ -71,13 +71,46 @@ CREATE TABLE "Space" (
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
+CREATE INDEX "User_email_idx" ON "User"("email");
+
+-- CreateIndex
+CREATE INDEX "User_id_idx" ON "User"("id");
+
+-- CreateIndex
+CREATE INDEX "Stream_userId_idx" ON "Stream"("userId");
+
+-- CreateIndex
+CREATE INDEX "Stream_spaceId_idx" ON "Stream"("spaceId");
+
+-- CreateIndex
+CREATE INDEX "Stream_id_idx" ON "Stream"("id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "CurrentStream_streamId_key" ON "CurrentStream"("streamId");
+
+-- CreateIndex
+CREATE INDEX "CurrentStream_streamId_idx" ON "CurrentStream"("streamId");
+
+-- CreateIndex
+CREATE INDEX "CurrentStream_spaceId_idx" ON "CurrentStream"("spaceId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "CurrentStream_spaceId_streamId_key" ON "CurrentStream"("spaceId", "streamId");
 
 -- CreateIndex
+CREATE INDEX "Upvote_userId_idx" ON "Upvote"("userId");
+
+-- CreateIndex
+CREATE INDEX "Upvote_streamId_idx" ON "Upvote"("streamId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Upvote_userId_streamId_key" ON "Upvote"("userId", "streamId");
+
+-- CreateIndex
+CREATE INDEX "Space_userId_idx" ON "Space"("userId");
+
+-- CreateIndex
+CREATE INDEX "Space_id_idx" ON "Space"("id");
 
 -- AddForeignKey
 ALTER TABLE "Stream" ADD CONSTRAINT "Stream_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

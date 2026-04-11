@@ -3,9 +3,9 @@ import { Music } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-900 to-black text-white p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-linear-to-b from-purple-900 to-black text-white p-4">
       <Music className="text-white w-24 h-24 mb-8" />
-      <h1 className="text-8xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-red-400 to-yellow-400">
+      <h1 className="text-8xl font-bold mb-4 text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-red-400 to-yellow-400">
         404
       </h1>
       <h2 className="text-2xl font-semibold mb-2">Not Found</h2>

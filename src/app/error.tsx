@@ -11,7 +11,7 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-900 to-black text-white p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-linear-to-b from-purple-900 to-black text-white p-4">
       <motion.div
         className="max-w-md w-full text-center"
         initial={{ opacity: 0, y: 20 }}

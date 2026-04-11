@@ -26,7 +26,7 @@ export default function DashboardSpaceCardSkeleton() {
 function SpaceCardSkeleton() {
   return (
     <div className="w-full">
-      <div className="relative overflow-hidden rounded-xl border border-gray-700  bg-gradient-to-br from-gray-800 to-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+      <div className="relative overflow-hidden rounded-xl border border-gray-700  bg-linear-to-br from-gray-800 to-gray-900 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
         <div className="p-4 xl:p-6 lg:p-8">
           <div className="flex flex-col lg:flex-row items-start gap-6">
             <div className="relative aspect-video lg:aspect-square w-full lg:w-36 overflow-hidden rounded-lg bg-gray-700 shadow-inner">

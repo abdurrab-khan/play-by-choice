@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 function StreamPage() {
   return (
     <>
-      <div className="col-span-1 bg-gradient-to-br flex flex-col overflow-hidden gap-4 from-gray-800 to-gray-900 md:col-span-2 lg:col-span-3 xl:col-span-4 rounded-xl p-4">
+      <div className="col-span-1 bg-linear-to-br flex flex-col overflow-hidden gap-4 from-gray-800 to-gray-900 md:col-span-2 lg:col-span-3 xl:col-span-4 rounded-xl p-4">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2">
             <Skeleton className="w-10 h-10 rounded-full" />
@@ -37,7 +37,7 @@ function StreamPage() {
           <Skeleton className="w-full h-20" />
         </div>
       </div>
-      <div className="col-span-1 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-4">
+      <div className="col-span-1 bg-linear-to-br from-gray-800 to-gray-900 rounded-xl p-4">
         <h1 className="text-2xl font-semibold">Add New Stream</h1>
         <div className="mt-3 flex flex-col gap-4">
           <Skeleton className="w-full h-10" />

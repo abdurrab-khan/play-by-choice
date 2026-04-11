@@ -39,14 +39,14 @@ function StreamCard({
 
   return (
     <Card
-      className="w-full mx-auto flex-shrink-0 overflow-hidden rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
+      className="w-full mx-auto shrink-0 overflow-hidden rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
       style={{
         background: "linear-gradient(135deg, #5A5B5A 0%, #6B6D6B 100%)",
       }}
     >
       <CardContent className="p-2 md:p-3.5">
         <div className="flex items-center space-x-4">
-          <div className="relative h-20 w-20 md:h-24 md:w-24 flex-shrink-0 overflow-hidden rounded-lg">
+          <div className="relative h-20 w-20 md:h-24 md:w-24 shrink-0 overflow-hidden rounded-lg">
             <Image
               src={image}
               layout="fill"
@@ -55,7 +55,7 @@ function StreamCard({
               className="transition-transform duration-300 ease-in-out hover:scale-110"
             />
           </div>
-          <div className="flex-grow">
+          <div className="grow">
             <h3 className="text-xl md:text-xl font-bold text-[#E0E0E0] mb-1">
               {title}
             </h3>

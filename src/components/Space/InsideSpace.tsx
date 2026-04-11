@@ -130,7 +130,7 @@ const InsideSpace: React.FC<InsideSpaceProps> = ({
   return (
     <>
       {listStream.length <= 0 ? (
-        <div className="col-span-5 bg-gradient-to-br flex flex-col overflow-hidden gap-4 from-gray-800 to-gray-900 rounded-xl p-4">
+        <div className="col-span-5 bg-linear-to-br flex flex-col overflow-hidden gap-4 from-gray-800 to-gray-900 rounded-xl p-4">
           <SpaceHeader streamList={streamList} />
           <div className="flex-1 flex justify-center mt-24">
             <div>
@@ -158,7 +158,7 @@ const InsideSpace: React.FC<InsideSpaceProps> = ({
         </div>
       ) : (
         <>
-          <div className="col-span-5 bg-gradient-to-br flex flex-col overflow-hidden gap-4 from-gray-800 to-gray-900 md:col-span-2 lg:col-span-3 xl:col-span-4 rounded-xl p-4">
+          <div className="col-span-5 bg-linear-to-br flex flex-col overflow-hidden gap-4 from-gray-800 to-gray-900 md:col-span-2 lg:col-span-3 xl:col-span-4 rounded-xl p-4">
             <div className="flex flex-col gap-6 relative overflow-y-auto h-full custom_scroll">
               <SpaceHeader streamList={streamList} />
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1 gap-4 custom_scroll">
@@ -199,7 +199,7 @@ const InsideSpace: React.FC<InsideSpaceProps> = ({
             </div>
           </div>
           <div
-            className={`col-span-5 md:col-span-1 h-fit flex flex-col justify-between md:h-full md:mb-12 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-4`}
+            className={`col-span-5 md:col-span-1 h-fit flex flex-col justify-between md:h-full md:mb-12 bg-linear-to-br from-gray-800 to-gray-900 rounded-xl p-4`}
           >
             <div>
               <h1 className="text-2xl font-semibold hidden md:block">
@@ -390,7 +390,7 @@ function AddStream({
           <div className="fixed flex justify-center items-center z-50 bg-[#3a3b3a98] backdrop-blur-sm filter h-screen w-screen right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2">
             <div className="h-fit w-full mx-4 md:w-1/2 lg:w-1/3 rounded-2xl">
               <Card
-                className="w-full mx-auto flex-shrink-0 overflow-hidden rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
+                className="w-full mx-auto shrink-0 overflow-hidden rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
                 style={{
                   background:
                     "linear-gradient(135deg, #5A5B5A 0%, #6B6D6B 100%)",
@@ -398,7 +398,7 @@ function AddStream({
               >
                 <CardContent className="p-3.5">
                   <div className="flex items-center space-x-4">
-                    <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg">
+                    <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg">
                       <Image
                         src={listOfSongs?.bigImg}
                         layout="fill"
@@ -407,7 +407,7 @@ function AddStream({
                         className="transition-transform duration-300 ease-in-out hover:scale-110"
                       />
                     </div>
-                    <div className="flex-grow">
+                    <div className="grow">
                       <h3 className="text-lg md:text-xl font-bold text-[#E0E0E0] mb-1">
                         {listOfSongs?.title}
                       </h3>
