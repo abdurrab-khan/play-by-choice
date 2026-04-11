@@ -1,4 +1,4 @@
-import prismaClient from "@/lib/db";
+import prismaClient from "@/lib/db/db";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { redirect } from "next/navigation";
@@ -6,7 +6,7 @@ import { CurrentStream } from "@/types";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { email: string } }
+  { params }: { params: { email: string } },
 ) {
   const currentUser = params.email;
 
@@ -20,7 +20,7 @@ export async function GET(
         status: "Unauthorized",
         message: "User is not authorized",
       },
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -36,7 +36,7 @@ export async function GET(
         status: "Not Found",
         message: "User not found",
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
@@ -94,7 +94,7 @@ export async function GET(
         status: "Not Found",
         message: "No Space found",
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
@@ -104,6 +104,6 @@ export async function GET(
       message: "All spaces found successfully",
       data: allSpaces,
     },
-    { status: 200 }
+    { status: 200 },
   );
 }

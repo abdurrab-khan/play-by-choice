@@ -1,9 +1,9 @@
-import prismaClient from "@/lib/db";
+import prismaClient from "@/lib/db/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   const { id } = params;
   if (!id) {
@@ -12,7 +12,7 @@ export async function DELETE(
         status: "Error",
         message: "Stream Id is invalid",
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
@@ -29,7 +29,7 @@ export async function DELETE(
           status: "Error",
           message: "Something went wrong while deleting stream",
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
     return NextResponse.json(
@@ -37,7 +37,7 @@ export async function DELETE(
         status: "Success",
         message: "Stream is deleted successfully",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return NextResponse.json(
@@ -45,7 +45,7 @@ export async function DELETE(
         status: "Error",
         message: `Something went wrong ${error}`,
       },
-      { status: 401 }
+      { status: 401 },
     );
   }
 }

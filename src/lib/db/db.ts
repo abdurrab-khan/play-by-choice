@@ -1,12 +1,13 @@
-import { PrismaClient } from "../../app/generated/prisma/client";
+import { PrismaClient } from "../../../app/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { getPostgresUrl } from "./url";
 
 const globalForPrisma = global as unknown as {
   prisma: PrismaClient;
 };
 
 const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: getPostgresUrl(),
 });
 
 const prisma =

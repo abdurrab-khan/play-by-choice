@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-import prismaClient from "@/lib/db";
+import prismaClient from "@/lib/db/db";
 import { Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { getRedisClient } from "@/lib/redis-client";
@@ -7,7 +7,7 @@ import { getRedisClient } from "@/lib/redis-client";
 // Get Currently Playing Stream or active stream
 export async function GET(
   req: NextRequest,
-  { params }: { params: { space_id: string } }
+  { params }: { params: { space_id: string } },
 ) {
   const { space_id } = params;
   const client = await getRedisClient();
@@ -20,7 +20,7 @@ export async function GET(
         data: JSON.parse(cachedData),
         isStreamAvailable: true,
       },
-      { status: 200 }
+      { status: 200 },
     );
   }
 
@@ -72,7 +72,7 @@ export async function GET(
           {
             EX: 5 * 60, // 15 minutes
             NX: true,
-          }
+          },
         );
 
         return {
@@ -81,7 +81,7 @@ export async function GET(
           data: currentStream,
           isStreamAvailable: true,
         };
-      }
+      },
     );
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
@@ -93,7 +93,7 @@ export async function GET(
             ? error
             : "Something went when getting the current stream",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -101,7 +101,7 @@ export async function GET(
 // Update the current stream to the next stream
 export async function POST(
   req: NextRequest,
-  { params }: { params: { space_id: string } }
+  { params }: { params: { space_id: string } },
 ) {
   const client = await getRedisClient();
   const { space_id } = params;
@@ -113,7 +113,7 @@ export async function POST(
         status: "Error",
         message: "Stream id and Space id is required",
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -183,7 +183,7 @@ export async function POST(
           {
             NX: true,
             EX: 5 * 60, // 15 minutes
-          }
+          },
         );
 
         return {
@@ -192,7 +192,7 @@ export async function POST(
           data: newCurrentStream,
           isStreamAvailable: true,
         };
-      }
+      },
     );
 
     return NextResponse.json(result, { status: 200 });
@@ -205,7 +205,7 @@ export async function POST(
             ? error.message
             : "An unexpected error occurred",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -213,7 +213,7 @@ export async function POST(
 // Play again the stream
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { space_id: string } }
+  { params }: { params: { space_id: string } },
 ) {
   const client = await getRedisClient();
   const { space_id } = params;
@@ -273,7 +273,7 @@ export async function PATCH(
           {
             NX: true,
             EX: 5 * 60, // 15 minutes
-          }
+          },
         );
 
         return {
@@ -282,7 +282,7 @@ export async function PATCH(
           data: newCurrentStream,
           isStreamAvailable: true,
         };
-      }
+      },
     );
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
@@ -294,7 +294,7 @@ export async function PATCH(
             ? error
             : "Something went when getting the current stream",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

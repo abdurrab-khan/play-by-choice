@@ -1,15 +1,15 @@
-import prismaClient from "@/lib/db";
+import prismaClient from "@/lib/db/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { stream_id: string } }
+  { params }: { params: { stream_id: string } },
 ) {
   const { user, isUpVoted } = await req.json();
   if (!user || !params.stream_id) {
     return NextResponse.json(
       { status: "Error", message: "Invalid user and stream id" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -26,7 +26,7 @@ export async function POST(
           status: "Error",
           message: "Already upvoted stream",
         },
-        { status: 200 }
+        { status: 200 },
       );
     }
 
@@ -58,7 +58,7 @@ export async function POST(
           status: "Error",
           message: "Already downvoted stream",
         },
-        { status: 200 }
+        { status: 200 },
       );
     }
 
@@ -90,7 +90,7 @@ export async function POST(
         message:
           error instanceof Error ? error?.message : "Failed to upvote stream",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -1,4 +1,4 @@
-import prismaClient from "@/lib/db";
+import prismaClient from "@/lib/db/db";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { z } from "zod";
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
           .map((err) => err.path[0])
           .join(", ")} is required and must be valid`,
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -46,12 +46,12 @@ export async function POST(req: NextRequest) {
             status: "Error",
             message: `User with email is already exits with ${isUserAlreadyThere.provider} provider`,
           },
-          { status: 401 }
+          { status: 401 },
         );
       }
       return NextResponse.json(
         { status: "Error", message: "User with email is already exits" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
     if (!user) {
       return NextResponse.json(
         { status: "Error", message: "Something went wrong try again" },
-        { status: 500 }
+        { status: 500 },
       );
     }
     return NextResponse.json(
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
         message: "User have been created successfully",
         data: user,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (e) {
     if (e instanceof z.ZodError) {
@@ -82,12 +82,12 @@ export async function POST(req: NextRequest) {
           status: "Error",
           message: e.errors.map((err) => err.message).join(", "),
         },
-        { status: 411 }
+        { status: 411 },
       );
     }
     return NextResponse.json(
       { status: "Error", message: `Error while creating the user ${e}` },
-      { status: 411 }
+      { status: 411 },
     );
   }
 }

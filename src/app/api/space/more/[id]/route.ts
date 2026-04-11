@@ -1,4 +1,4 @@
-import prismaClient from "@/lib/db";
+import prismaClient from "@/lib/db/db";
 import { sortStream } from "@/lib/utils";
 import { CreateStreamType, CurrentStream, StreamTypeApi } from "@/types";
 import { Prisma } from "@prisma/client";
@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   const { id } = params;
 
@@ -16,7 +16,7 @@ export async function DELETE(
         status: "Error",
         message: "Space Id is invalid",
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
@@ -33,7 +33,7 @@ export async function DELETE(
           status: "Error",
           message: "Something went wrong while deleting space",
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
     return NextResponse.json(
@@ -41,7 +41,7 @@ export async function DELETE(
         status: "Success",
         message: "Space is deleted successfully",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return NextResponse.json(
@@ -49,14 +49,14 @@ export async function DELETE(
         status: "Error",
         message: `Something went wrong ${error}`,
       },
-      { status: 401 }
+      { status: 401 },
     );
   }
 }
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   const { stream = {} } = await req.json();
   const { id } = params;
@@ -68,7 +68,7 @@ export async function PUT(
         status: "Error",
         message: "Data is invalid",
       },
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -79,7 +79,7 @@ export async function PUT(
         status: "Error",
         message: "Space Id is invalid",
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
@@ -96,7 +96,7 @@ export async function PUT(
         status: "Error",
         message: "Space is not found",
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
@@ -115,7 +115,7 @@ export async function PUT(
                 status: "Error",
                 message: "Something went wrong while adding stream",
               },
-              { status: 500 }
+              { status: 500 },
             );
           }
 
@@ -143,7 +143,7 @@ export async function PUT(
                 status: "Error",
                 message: "Something went wrong while fetching added stream",
               },
-              { status: 500 }
+              { status: 500 },
             );
           }
 
@@ -164,7 +164,7 @@ export async function PUT(
           },
         });
         return addStream;
-      }
+      },
     );
 
     return NextResponse.json(
@@ -175,7 +175,7 @@ export async function PUT(
       },
       {
         status: 201,
-      }
+      },
     );
   } catch (error) {
     return NextResponse.json(
@@ -183,14 +183,14 @@ export async function PUT(
         status: "Error",
         message: `Something went wrong ${error}`,
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 }
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   const { spaceName = "" } = await req.json();
   const { id } = params;
@@ -201,7 +201,7 @@ export async function PATCH(
         status: "Error",
         message: "Space Id or Space Name is invalid",
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
@@ -221,7 +221,7 @@ export async function PATCH(
           status: "Error",
           message: "Something went wrong while updating space",
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -231,7 +231,7 @@ export async function PATCH(
         message: "Space is updated successfully",
         data: updatedSpace,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return NextResponse.json(
@@ -239,14 +239,14 @@ export async function PATCH(
         status: "Error",
         message: `Something went wrong ${error}`,
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 }
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   // Extracting the space id from the params
   const { id } = params;
@@ -257,7 +257,7 @@ export async function GET(
         status: "Error",
         message: "Space Id is invalid",
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
@@ -299,7 +299,7 @@ export async function GET(
           status: "Error",
           message: "Space not found",
         },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -318,7 +318,7 @@ export async function GET(
           Stream: sortedStream,
         },
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return NextResponse.json(
@@ -326,7 +326,7 @@ export async function GET(
         status: "Error",
         message: `Something went wrong ${error}`,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

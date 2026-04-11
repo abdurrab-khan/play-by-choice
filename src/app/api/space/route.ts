@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CreateStreamType } from "@/types";
-import prismaClient from "@/lib/db";
+import prismaClient from "@/lib/db/db";
 
 export async function POST(req: NextRequest) {
   console.log("Request body", req.body);
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
         status: "Error",
         message: `User not found`,
       },
-      { status: 404 }
+      { status: 404 },
     );
   }
 
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
           status: "Error",
           message: `Something went wrong while creating space`,
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
             status: "Error",
             message: `Something went wrong while inserting stream`,
           },
-          { status: 500 }
+          { status: 500 },
         );
       }
     }
@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
         message: `Space created successfully`,
         data: createSpace,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return NextResponse.json(
@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
         status: "Error",
         message: `Something went wrong while. Creating space ${error}`,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

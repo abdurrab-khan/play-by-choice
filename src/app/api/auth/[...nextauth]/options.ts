@@ -1,7 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import SpotifyProvider from "next-auth/providers/spotify";
-import prismaClient from "@/lib/db";
+import prismaClient from "@/lib/db/db";
 import { refreshAccessToken } from "@/lib/action/spotify";
 import { refreshGAccessToken } from "@/lib/action/youtube";
 import { CredentialType } from "@/types";
