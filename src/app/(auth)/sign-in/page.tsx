@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Login from "@/components/Login";
-import { getServerSession } from "next-auth";
 
 export const metadata: Metadata = {
   title: "Login",

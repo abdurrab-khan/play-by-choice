@@ -1,5 +1,5 @@
 import { getPostgresUrl } from "@/lib/db/url";
-import { PrismaClient, Prisma } from "../app/generated/prisma/client";
+import { PrismaClient, Prisma } from "./generated/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import "dotenv/config";
 

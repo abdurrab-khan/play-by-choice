@@ -12,6 +12,8 @@ export async function proxy(request: NextRequest) {
   });
   const url = request.nextUrl.clone();
 
+  console.log("Session Token:", sessionToken);
+
   if (
     sessionToken &&
     (url.pathname.startsWith("/sign-in") ||

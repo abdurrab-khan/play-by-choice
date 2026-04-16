@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
   Card,
   CardContent,
@@ -8,16 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { redirect } from "next/navigation";
 import AuthError from "@/components/AuthError";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, useSession, getSession } from "next-auth/react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import FullLoader from "./Loader/FullLoader";
 import { useRouter } from "next/navigation";
 
 function Login() {
-  const { status } = useSession();
+  const { status, data } = useSession();
   const router = useRouter();
 
   if (status === "loading") {
@@ -30,7 +28,7 @@ function Login() {
   }
 
   const handleAuth = async (provider: string) => {
-    await signIn(provider);
+    const res = await signIn();
   };
   return (
     <>
