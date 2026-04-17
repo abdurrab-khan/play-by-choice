@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useRouter } from "next/navigation";
 import DeleteSpace from "./DeleteSpace";
 import { Button } from "../ui/button";
+import { useSession } from "next-auth/react";
 
 export default function SpaceCard({
   id,

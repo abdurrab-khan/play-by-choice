@@ -4,6 +4,7 @@ import ListStreams from "@/components/Space/ListSpace";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { Metadata } from "next";
+import { getSession } from "next-auth/react";
 import React, { Suspense } from "react";
 
 export const dynamic = "force-dynamic";

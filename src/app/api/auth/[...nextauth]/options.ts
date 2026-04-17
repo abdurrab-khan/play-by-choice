@@ -1,61 +1,30 @@
 import { NextAuthOptions } from "next-auth";
-// import GoogleProvider from "next-auth/providers/google";
-// import SpotifyProvider from "next-auth/providers/spotify";
-// import { refreshAccessToken } from "@/lib/action/spotify";
-// import { refreshGAccessToken } from "@/lib/action/youtube";
-// import { CredentialType } from "@/types";
-import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    CredentialsProvider({
-      name: "credential",
-      credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials: any): Promise<any> {
-        const { email, password } = credentials;
-        console.log("Credentials received in authorize: ", credentials);
-
-        return {
-          id: "1",
-          name: "Abdur Rab Khan",
-          email: "abdurrabkha222@gmail.omc",
-          image: "https://avatars.githubusercontent.com/u/24848171?v=4",
-        };
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      authorization: {
+        params: {
+          scope: "openid email profile",
+          prompt: "consent",
+          access_type: "offline",
+        },
       },
     }),
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID as string,
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    //   authorization: {
-    //     params: {
-    //       prompt: "consent",
-    //       access_type: "offline",
-    //       response_type: "code",
-    //       scope:
-    //         "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/youtube.readonly",
-    //     },
-    //   },
-    // }),
-    // SpotifyProvider({
-    //   clientId: process.env.SPOTIFY_CLIENT_ID as string,
-    //   clientSecret: process.env.SPOTIFY_CLIENT_SECRET as string,
-    //   authorization: {
-    //     params: {
-    //       scope:
-    //         // "user-read-email user-modify-playback-state user-read-playback-state user-read-currently-playing streaming",
-    //         "user-read-email user-read-private user-modify-playback-state user-read-playback-state playlist-modify-public playlist-modify-private user-read-currently-playing streaming",
-    //     },
-    //   },
-    // }),
   ],
-  pages: {
-    signIn: "/sign-in",
-    error: "/sign-in",
+  callbacks: {
+    jwt(params) {
+      console.log("JWT Callback Params:", params);
+      return params.token;
+    },
+    session(params) {
+      console.log("Session Callback Params:", params);
+      return params.session;
+    },
   },
-  // debug: process.env.NODE_ENV === "development",
   // callbacks: {
   //   async jwt({ token, account, profile }) {
   //     if (account && profile) {
@@ -147,12 +116,9 @@ export const authOptions: NextAuthOptions = {
   //     }
   //   },
   // },
-  session: {
-    strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60,
+  pages: {
+    signIn: "/sign-in",
+    error: "/sign-in",
   },
-  jwt: {
-    maxAge: 30 * 24 * 60 * 60,
-  },
-  secret: process.env.NEXT_AUTH_SECRET,
+  debug: process.env.NODE_ENV === "development",
 };

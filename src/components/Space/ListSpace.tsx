@@ -68,7 +68,7 @@ async function ListSpace() {
                 Stream={Stream}
                 createdAt={createdAt}
               />
-            )
+            ),
           )}
       </div>
     </>

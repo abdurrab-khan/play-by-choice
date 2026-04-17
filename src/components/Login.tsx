@@ -28,7 +28,8 @@ function Login() {
   }
 
   const handleAuth = async (provider: string) => {
-    const res = await signIn();
+    const res = await signIn("google");
+    console.log("SignIn Response:", res);
   };
   return (
     <>
