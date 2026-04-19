@@ -8,28 +8,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import AuthError from "@/components/AuthError";
-import { signIn, useSession, getSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import FullLoader from "./Loader/FullLoader";
-import { useRouter } from "next/navigation";
 
 function Login() {
-  const { status, data } = useSession();
-  const router = useRouter();
+  const sessionData = useSession();
 
-  if (status === "loading") {
-    return <FullLoader />;
-  }
-
-  if (status === "authenticated") {
-    router.push("/dashboard");
-    return null;
-  }
+  console.log("Session Data:", sessionData);
 
   const handleAuth = async (provider: string) => {
     const res = await signIn("google");
-    console.log("SignIn Response:", res);
   };
   return (
     <>

@@ -1,18 +1,16 @@
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
 
 export const config = {
   matcher: ["/", "/sign-in", "/sign-up", "/dashboard/:path*"],
 };
 
 export async function proxy(request: NextRequest) {
-  const sessionToken = await getToken({
-    req: request,
+  const url = request.nextUrl.clone();
+  const sessionToken = await getServerSession({
+    request: request,
     secret: process.env.NEXT_AUTH_SECRET,
   });
-  const url = request.nextUrl.clone();
-
-  console.log("Session Token:", sessionToken);
 
   if (
     sessionToken &&

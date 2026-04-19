@@ -18,9 +18,12 @@ async function Dashboard() {
   return (
     <div className="flex justify-center">
       <div className="main_container" style={{ height: "calc(100vh - 128px)" }}>
-        <Suspense fallback={<DashboardSpaceCardSkeleton />}>
+        <h1>
+          <span className="text-2xl font-bold">Your Spaces</span>
+        </h1>
+        {/* <Suspense fallback={<DashboardSpaceCardSkeleton />}>
           <ListStreams />
-        </Suspense>
+        </Suspense> */}
       </div>
     </div>
   );
